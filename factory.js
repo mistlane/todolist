@@ -16,7 +16,7 @@ const projectlist = []
 //projectlist.push("FirstTodo")
 
 const chooseProject = () => {
-    return 0
+    return projectlist.length + 1
 }
 /////////////////////////////
 
@@ -26,6 +26,8 @@ const configureTodo = (title="", description="", dueDate="", priority="") =>  {
 
     const newTodo = createTodo({title, description, dueDate, priority, projectId})
     projectlist.push(newTodo)
+
+  
 
     todoDom(newTodo) // Import from dom.js
 }
