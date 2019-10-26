@@ -13,10 +13,5 @@ import {projectlist} from '../dist/factory.js';
 const firstTodo = configureTodo("Wash clothes", "Put 1 dl of deterregant", "Now", "5")
 initialLayout()
 
-const priorityTest = () => {
-    console.log(projectlist[0].priority)
-}
 
-export  {
-    priorityTest
-}
+
