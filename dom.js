@@ -1,7 +1,7 @@
 import {todoComplete} from './todocomplete.js';
 import {changeTodoPriority} from './todopriority.js';
 import {formAppear, uploadform, uploadProjectForm} from './form.js';
-import {newProjectBtn, changeProject} from './project.js';
+import {newProjectBtn, changeProject, currentProjectCache} from './project.js';
 import {projectlist} from './factory.js'
 
 const container = document.getElementById("container")
@@ -61,7 +61,7 @@ const todoDom = (factory) => {
     completebutton.setAttribute("type", "button")
     completebutton.setAttribute("id", "completebutton" + titleNoSpace)
     completebutton.value = "It's Finished!"
-    completebutton.onclick = function() {todoComplete(titleNoSpace)}
+    completebutton.onclick = function() {todoComplete(titleNoSpace, factory.title)}
     todoDiv.appendChild(completebutton)
 
 
@@ -136,7 +136,8 @@ const projectDiv = () => {
     const currentProject = document.createElement("h1")
     currentProject.setAttribute("id", "currentProject")
     currentProject.textContent = "First Project"
-    console.log(currentProject.textContent)
+    currentProjectCache.name = "First Project"
+   
 
 
     /// APPENDING
