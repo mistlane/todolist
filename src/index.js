@@ -1,6 +1,8 @@
 import {configureTodo} from '../dist/factory.js';
 import {initialLayout} from '../dist/dom.js';
 import '../dist/styles/style.css';
+import 'bootstrap';
+
 
 
 
