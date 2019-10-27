@@ -1,7 +1,8 @@
 import {todoComplete} from './todocomplete.js';
 import {changeTodoPriority} from './todopriority.js';
-import {formAppear, uploadform} from './form.js';
-import {newProject} from './project.js';
+import {formAppear, uploadform, uploadProjectForm} from './form.js';
+import {newProjectBtn, changeProject} from './project.js';
+import {projectlist} from './factory.js'
 
 const container = document.getElementById("container")
 
@@ -59,7 +60,7 @@ const todoDom = (factory) => {
     const completebutton = document.createElement("input")
     completebutton.setAttribute("type", "button")
     completebutton.setAttribute("id", "completebutton" + titleNoSpace)
-    completebutton.value = "Finished"
+    completebutton.value = "It's Finished!"
     completebutton.onclick = function() {todoComplete(titleNoSpace)}
     todoDiv.appendChild(completebutton)
 
@@ -121,22 +122,70 @@ const NiceJobAlert = () => {
 
 const projectDiv = () => {
 
+    /// PROJECTDIV
     const projectDiv = document.createElement("div")
+    projectDiv.setAttribute("id", "projectDiv")
+
+    /// NEW PROJECT BUTTON
     const newProjectButton = document.createElement("input")
     newProjectButton.setAttribute("type", "button")
     newProjectButton.setAttribute("value", "New Project")
     newProjectButton.setAttribute("id", "newProjectBtn")
 
+    /// SHOWING THE CURRENT PROJECT
+    const currentProject = document.createElement("h1")
+    currentProject.setAttribute("id", "currentProject")
+    currentProject.textContent = "First Project"
+    console.log(currentProject.textContent)
+
+
+    /// APPENDING
     projectDiv.appendChild(newProjectButton)
+    projectDiv.appendChild(currentProject)
     container.appendChild(projectDiv)
+
+    newProjectBtn()
 }
 
+const changeProjectDOM = () => {
 
+    const form = document.createElement("form")
+    const select = document.createElement("select")
+    select.setAttribute("name", "priority")
+    select.setAttribute("id", "projectChangeSelect")
+    select.onchange = function() {changeProject(this.value)}
+
+    const option0 = document.createElement("option")
+    option0.setAttribute("value", "Project")
+    option0.textContent = "Project"
+    select.appendChild(option0)
+
+    
+
+
+
+    form.appendChild(select)
+    container.appendChild(form)
+
+    projectOptionGenerator(projectlist[0].title)
+
+
+}
+
+const projectOptionGenerator = (j) =>  {
+    const select = document.getElementById("projectChangeSelect")
+    const option = document.createElement("option")
+    option.setAttribute("value", j)
+    option.textContent = j
+    select.appendChild(option)
+
+}
 
 const initialLayout = () => {
     NiceJobAlert()
     createNewTodo()
     projectDiv()
+    changeProjectDOM()
 }
 
 
@@ -228,11 +277,54 @@ const createNewTodo = () => {
 }
 
 
+const projectForm = () => {
+    //FORM
+    const form = document.createElement("form")
+    form.setAttribute("id", "projectform")
+    form.setAttribute("onsubmit", "return false")
+   
+
+
+    //TITLE FOR TEXT
+    const texttitle = document.createElement("p")
+    texttitle.textContent = "Add The New Project's Title:"
+    texttitle.setAttribute("id", "projecttexttitle")
+
+    //TITLEBOX
+    const text = document.createElement("input")
+    text.setAttribute("type", "text")
+    text.setAttribute("id", "projectformtext")
+    
+
+    //SUBMIT    
+
+    const submit = document.createElement("input")
+    submit.setAttribute("type", "submit")
+    submit.setAttribute("id", "fprojectormsubmit")
+    submit.onclick = function() {uploadProjectForm()}
+  
+    //APPENDING 
+
+    form.appendChild(texttitle)
+    form.appendChild(text)
+    form.appendChild(submit)
+    container.appendChild(form)
+
+
+
+
+}
+
+
+
+
 
 
 export {
     form,
+    projectForm,
     todoDom,
     initialLayout,
-    formatTitle
+    formatTitle,
+    projectOptionGenerator
 }
