@@ -1,6 +1,7 @@
 import {todoComplete} from './todocomplete.js';
 import {changeTodoPriority} from './todopriority.js';
 import {formAppear, uploadform} from './form.js';
+import {newProject} from './project.js';
 
 const container = document.getElementById("container")
 
@@ -118,9 +119,24 @@ const NiceJobAlert = () => {
     container.appendChild(alertdiv)
 }
 
+const projectDiv = () => {
+
+    const projectDiv = document.createElement("div")
+    const newProjectButton = document.createElement("input")
+    newProjectButton.setAttribute("type", "button")
+    newProjectButton.setAttribute("value", "New Project")
+    newProjectButton.setAttribute("id", "newProjectBtn")
+
+    projectDiv.appendChild(newProjectButton)
+    container.appendChild(projectDiv)
+}
+
+
+
 const initialLayout = () => {
     NiceJobAlert()
     createNewTodo()
+    projectDiv()
 }
 
 
