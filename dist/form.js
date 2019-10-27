@@ -1,22 +1,21 @@
-import {form} from "./dom.js";
+import {form, projectForm} from "./dom.js";
 import {configureTodo} from '../dist/factory.js';
+import {configureProject} from './project.js';
 import {format} from 'date-fns'
 import parseISO from 'date-fns/parseISO'
 
 
-
+/// MAKE THE FORM APPEAR
 const formAppear = () => {
 
 
 
-    const element = document.getElementById("form")
-    if(typeof(element) != 'undefined' && element != null){ 
-    removeElement("form")
-    }
+    elementCheck("form")
 
    form()
 }
 
+/// UPLOAD THE NEW TODO -FORM
 const uploadform = () => {
    
 
@@ -39,17 +38,55 @@ const uploadform = () => {
     form.style.display = "none"
 
 
-
-    return false
-
 }
+
+/// UNIVERSAL REMOVE ELEMENT- FUNCTION
 
 function removeElement(id) {
     var elem = document.getElementById(id);
     return elem.parentNode.removeChild(elem);
 }
 
+/// UNIVERSAL REMOVE CLASS
+const removeClass = (id) => {
+    const rclass = document.getElementsByClassName(id);
+
+    while(rclass[0]) {rclass[0].parentNode.removeChild(rclass[0]);}
+}
+
+/// CHECK FOR LIABILITY
+const elementCheck = (id) => {
+    const element = document.getElementById(id)
+    if(typeof(element) != 'undefined' && element != null){ 
+        removeElement(id)
+    }
+}
+
+/// THE NEW PROJECT FORM
+const uploadProjectForm = function() {
+
+    const title = document.getElementById("projectformtext")
+    const titlevalue = title.value;
+
+
+    configureProject(titlevalue)
+
+    const projectForm = document.getElementById("projectform")
+    projectForm.style.display = "none"
+}
+
+///MAKE THE PROJECT FORM APPEAR
+const projectFormAppear = () => {
+    elementCheck("projectform")
+    projectForm()
+}
+
+
+
 export {
     formAppear,
-    uploadform
+    uploadform,
+    projectFormAppear,
+    uploadProjectForm,
+    removeClass
 }
