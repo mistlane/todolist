@@ -1,4 +1,5 @@
 import {todoDom} from '../dist/dom.js';
+import {currentProjectCache} from './project.js';
 
 const createTodo = ({ title, description, dueDate, priority}) => ({
     title,
@@ -18,12 +19,11 @@ projectlist.push(firstproject)
 
 /// TÄMÄ MUUTETAAN NAPPIA PAINAMALLA RETURNAAMAAN PROJECTLISTISTÄ OIKEAN ARRAYN
 const chooseProject = () => {
-    const project = document.getElementById("currentProject")
-    const title = project.textContent
+    const title = currentProjectCache.name
+
 
     var m
     for(m=0; m<projectlist.length; m++) {
-        console.log(projectlist[m].title, title)
         if(projectlist[m].title == title) {
             const projectArray = projectlist[m].array
             return projectArray
@@ -40,7 +40,6 @@ const configureTodo = (title="", description="", dueDate="", priority="") =>  {
 
     projectArray.push(newTodo)
 
-    console.table(projectlist)
 
 
     todoDom(newTodo) // Import from dom.js

@@ -28,6 +28,7 @@ const configureProject = (titlevalue) => {
 }
 
 const changeProject = (title) => {
+    currentProjectCache.name = title
 
     /// title = this.value from select
     removeClass("todoDiv")
@@ -35,10 +36,12 @@ const changeProject = (title) => {
     const projectTitle = document.getElementById("currentProject")
     projectTitle.textContent = title
 
+
     if(title !== "Project") {
 
 
         for(var i=0; i<projectlist.length; i++) {
+          
             if(projectlist[i].title === title) {
 
                 console.log("It gets here", projectlist[i].array)
@@ -60,6 +63,9 @@ const changeProject = (title) => {
 }
 
 
+const currentProjectCache = {
+    
+}
 
 
 
@@ -71,8 +77,8 @@ const changeProject = (title) => {
 export {
     newProjectBtn,
     configureProject,
-    changeProject
-    
+    changeProject,
+    currentProjectCache
 }
 
 
