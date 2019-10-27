@@ -1,6 +1,6 @@
 import {form, projectForm} from "./dom.js";
 import {configureTodo} from '../dist/factory.js';
-import {configureProject} from './project.js';
+import {configureProject, changeProject} from './project.js';
 import {format} from 'date-fns'
 import parseISO from 'date-fns/parseISO'
 
@@ -73,6 +73,9 @@ const uploadProjectForm = function() {
 
     const projectForm = document.getElementById("projectform")
     projectForm.style.display = "none"
+
+
+    changeProject(titlevalue)
 }
 
 ///MAKE THE PROJECT FORM APPEAR
