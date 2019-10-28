@@ -1,12 +1,34 @@
+body {
+    background: grey;
+}
 
+#todoContainer {
+    position: relative;
+    display: inline-block;
+    background: rgb(166, 166, 233);
+    width: 80%;
+    height: auto;
+    left: 20%;
+   
+}
 
 .todoDiv {
-    background: rgb(166, 166, 233);
-    width: 250px;
+    background: rgb(24, 219, 233);
+    display: inline-block;
+    height: 10%;
+}
+
+#projectform {
+    top: 15%;
+    position: absolute;
+   
 }
 
 
-
 #form {
+    position: absolute;
+    top: 17%;
+ 
+
     width: 20%;    
 }

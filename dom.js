@@ -14,7 +14,8 @@ const formatTitle = (title) => {
 }
 
 const todoDom = (factory) => {
-
+    const todoContainer = document.createElement("div")
+    todoContainer.setAttribute("id","todoContainer")
 
     // Formatting title for id
     const titleNoSpace = formatTitle(factory.title)
@@ -102,7 +103,8 @@ const todoDom = (factory) => {
     priorityDiv.appendChild(priority)
     todoDiv.appendChild(priorityDiv)
     todoDiv.appendChild(dueDate)
-    container.appendChild(todoDiv)
+    todoContainer.appendChild(todoDiv)
+    container.appendChild(todoContainer)
 
     todoDiv.appendChild(form)
     form.appendChild(select)
@@ -141,18 +143,20 @@ const projectDiv = () => {
 
 
     /// APPENDING
-    projectDiv.appendChild(newProjectButton)
+   
     projectDiv.appendChild(currentProject)
+    projectDiv.appendChild(newProjectButton)
     container.appendChild(projectDiv)
 
     newProjectBtn()
 }
 
 const changeProjectDOM = () => {
-
+    const projectDiv = document.getElementById("projectDiv")
     const form = document.createElement("form")
+   
     const select = document.createElement("select")
-    select.setAttribute("name", "priority")
+    select.setAttribute("name", "project")
     select.setAttribute("id", "projectChangeSelect")
     select.onchange = function() {changeProject(this.value)}
 
@@ -166,7 +170,7 @@ const changeProjectDOM = () => {
 
 
     form.appendChild(select)
-    container.appendChild(form)
+    projectDiv.appendChild(form)
 
     projectOptionGenerator(projectlist[0].title)
 
@@ -184,8 +188,8 @@ const projectOptionGenerator = (j) =>  {
 
 const initialLayout = () => {
     NiceJobAlert()
-    createNewTodo()
     projectDiv()
+    createNewTodo()
     changeProjectDOM()
 }
 
@@ -267,13 +271,14 @@ const form = () => {
 }
 
 const createNewTodo = () => {
+    const projectDiv = document.getElementById("projectDiv")
     const todoButton = document.createElement("input")
     todoButton.setAttribute("type", "button")
     todoButton.setAttribute("value", "New Todo")
     todoButton.setAttribute("id", "todoButton")
     todoButton.onclick = function() {formAppear()}
 
-    container.appendChild(todoButton)
+    projectDiv.appendChild(todoButton)
 
 }
 
