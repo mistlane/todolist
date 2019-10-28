@@ -1,5 +1,6 @@
 import {currentProjectCache} from './project.js';
 import {projectlist} from './factory.js';
+import {itemsArray} from './localstorage.js';
 
 
 const todoComplete = (titleNoSpace, title) => {
@@ -9,9 +10,16 @@ const todoComplete = (titleNoSpace, title) => {
     removeElement(titleNoSpace)
     showalertdiv()
     deleteFromArray(title)
+    deleteFromLocalStorage(title)
+
+    
   
 
 
+}
+
+const deleteFromLocalStorage = (title) => {
+  localStorage.removeItem(title)
 }
 
 const deleteFromArray = (title) => {
