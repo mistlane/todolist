@@ -4,6 +4,8 @@ import {configureProject, changeProject} from './project.js';
 import {format} from 'date-fns'
 import parseISO from 'date-fns/parseISO'
 
+import {itemsArray} from './localstorage.js';
+
 
 /// MAKE THE FORM APPEAR
 const formAppear = () => {
@@ -37,6 +39,7 @@ const uploadform = () => {
     const form = document.getElementById("form")
     form.style.display = "none"
 
+ 
 
 }
 
@@ -49,6 +52,7 @@ function removeElement(id) {
 
 /// UNIVERSAL REMOVE CLASS
 const removeClass = (id) => {
+    
     const rclass = document.getElementsByClassName(id);
 
     while(rclass[0]) {rclass[0].parentNode.removeChild(rclass[0]);}

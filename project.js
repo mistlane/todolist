@@ -1,14 +1,16 @@
 import {projectFormAppear} from './form.js';
-import {projectlist} from './factory.js';
+import {projectlist, sortTodoByDate} from './factory.js';
 import {projectOptionGenerator, todoDom} from './dom.js';
 import {removeClass} from './form.js';
-
+import {localStorageProjects} from './localstorage.js';
 
 const newProjectBtn = function() {
     const button = document.getElementById("newProjectBtn")
     button.addEventListener("click", function() {projectFormAppear()})
 
 }
+
+
 
 const configureProject = (titlevalue) => {
 
@@ -17,6 +19,8 @@ const configureProject = (titlevalue) => {
         array: []
 
     }
+
+    
 
     projectlist.push(project)
     console.log(projectlist)
@@ -34,22 +38,23 @@ const changeProject = (title) => {
     removeClass("todoDiv")
 
     const projectTitle = document.getElementById("currentProject")
-    projectTitle.textContent = title
-
+    
 
     if(title !== "Project") {
+        projectTitle.textContent = title
 
 
         for(var i=0; i<projectlist.length; i++) {
           
             if(projectlist[i].title === title) {
 
-                console.log("It gets here", projectlist[i].array)
                 const todoArray = projectlist[i].array
+                console.table(todoArray)
+                console.log("TÄSSÄ TÄÄ VITTUSAATANA")
             
                 for(var k=0; k<todoArray.length; k++) {
                     console.log(todoArray[k])
-                    todoDom(todoArray[k])
+                    sortTodoByDate(todoArray[k])
 
                 }
 
