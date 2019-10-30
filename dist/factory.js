@@ -64,8 +64,6 @@ const todoArray = []
 const sortTodoByDate = (newTodo) => {
     
 
-    console.table(todoArray)
-    console.log("YLHÄÄLLÄ TODOARRAY")
 
     var IsIncluded = false;
     for(var i=0; i< todoArray.length; i++) {
@@ -81,8 +79,12 @@ const sortTodoByDate = (newTodo) => {
     }
 
 
+    console.table(todoArray)
+    console.log("YLHÄÄLLÄ TODOARRAY")
 
 
+
+    const todoCache = [...todoArray]
 
 
 
@@ -105,12 +107,14 @@ const sortTodoByDate = (newTodo) => {
     console.table(dateArray)
 
     removeClass("todoDiv")
-    console.log("todoArray.length:", todoArray.length, "DateArray.length:", dateArray.length, "Tätä enempää ei pitäisi olla todoDivejä")
+    console.log("todoArray.length:", todoCache.length, "DateArray.length:", dateArray.length, "Tätä enempää ei pitäisi olla todoDivejä")
     for(var r=0; r<dateArray.length; r++) {
         /// OTTAA TOISELLAKIN DATEARRAYN INDEKSILLÄ SEN ENSIMMÄISEN TODON. SEN MAHDOLLISUUS PITÄISI POISTAA LUUPISTA KUN TODO ON "VIETY"
-        for(var p=0; p<todoArray.length; p++) {
-            if(dateArray[r] === todoArray[p].dueDate && todoArray[p].projectName === currentProjectCache.name) {
-                todoDom(todoArray[p])
+        for(var p=0; p<todoCache.length; p++) {
+            if(dateArray[r] === todoCache[p].dueDate && todoCache[p].projectName === currentProjectCache.name) {
+                todoDom(todoCache[p])
+                todoCache.splice(p,1)
+                
                 break
             }
 
@@ -124,5 +128,6 @@ export {
     createTodo,
     configureTodo,
     projectlist,
-    sortTodoByDate
+    sortTodoByDate,
+    todoArray
 }

@@ -1,5 +1,6 @@
-import {todoDom} from './dom.js';
+import {projectOptionGenerator} from './dom.js';
 import {createTodo, sortTodoByDate} from './factory.js';
+import {projectlist} from './factory.js';
 
 
 
@@ -17,9 +18,47 @@ const clearTodos = () => {
 const localStorageFunction = () => {
     if (localStorage.length !== 0) {
         setTodos()
+        setProjects()
 
     }
 }
+
+
+
+const setProjects = () => {
+    var archive = {}, 
+    keys = Object.keys(localStorage),
+    i = keys.length;
+
+    while ( i-- ) {
+        archive[ keys[i] ] = JSON.parse(localStorage.getItem( keys[i] ));
+
+
+        if(archive[keys[i]].id == "project") {
+            alert("GOT HERE")
+
+        
+
+            const title = archive[keys[i]].title
+            const array = archive[keys[i]].array
+        
+            
+            const project = {
+                title: title,
+                array: array,
+                id: "project"
+        
+            }
+
+            projectlist.push(project)
+          
+        
+            projectOptionGenerator(title)
+
+        }
+    }
+}
+
 
 
 function setTodos() {
@@ -41,10 +80,10 @@ function setTodos() {
         console.table(localTodo)
 
 
-        if(localTodo.projectName == "First Project") {
+
         sortTodoByDate(localTodo)
         }
-    }
+
 
 }
 
