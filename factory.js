@@ -90,10 +90,10 @@ const sortTodoByDate = (newTodo) => {
 
     dateArray.sort((date1, date2) => {
         date1 = date1.split('/'), date2 = date2.split('/');
-        let day1 = parseInt(date1[1]);
-        let day2 = parseInt(date2[1]);
-        let month1 = parseInt(date1[0]);
-        let month2 = parseInt(date2[0]);
+        let day1 = parseInt(date1[0]);
+        let day2 = parseInt(date2[0]);
+        let month1 = parseInt(date1[1]);
+        let month2 = parseInt(date2[1]);
         let year1 = parseInt(date1[2]);
         let year2 = parseInt(date2[2]);
         if (year1 !== year2) {
