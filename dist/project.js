@@ -31,7 +31,6 @@ const configureProject = (titlevalue) => {
     
 
     projectlist.push(project)
-    console.log(projectlist)
 
     localStorage.setItem(titlevalue, JSON.stringify(project))
 
@@ -55,8 +54,7 @@ const changeProject = (title) => {
 
 
         for(var u=0; u<todoArray.length; u++ ) {
-            console.table(todoArray)
-            console.log("TÄSSÄ TÄÄ VITTUSAATANA")
+         
             if(todoArray[u].projectName == title) {
                 sortTodoByDate(todoArray[u])
             }
@@ -70,8 +68,6 @@ const changeProject = (title) => {
 const showAllTodos = () => {
     removeClass("todoDiv")
     for(var u=0; u<todoArray.length; u++ ) {
-        console.table(todoArray)
-        console.log("SHOWALL TODOS -- TÄSSÄ TÄÄ VITTUSAATANA")
         sortTodoByDate(todoArray[u], "yes")
 
     }

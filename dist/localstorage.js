@@ -38,7 +38,7 @@ const setProjects = () => {
 
 
         if(archive[keys[i]].id == "project") {
-            alert("GOT HERE")
+ 
 
         
 
@@ -81,7 +81,7 @@ function setTodos() {
             const projectName = archive[keys[i]].projectName
 
             const localTodo = createTodo({title, description, dueDate, priority, projectName})
-            console.table(localTodo)
+           
 
 
 

@@ -4,7 +4,6 @@ import {itemsArray} from './localstorage.js';
 
 
 const todoComplete = (titleNoSpace, title) => {
-  console.log(titleNoSpace, title)
     /// YKSITTÄISEN DIVIN ID ON MUOTOA titleNoSpace
 
     removeElement(titleNoSpace)

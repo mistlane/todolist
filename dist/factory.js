@@ -72,15 +72,13 @@ const sortTodoByDate = (newTodo, showAll = "no") => {
             break;
         }
     }
-    console.log(IsIncluded)
     if(!IsIncluded) {
         dateArray.push(newTodo.dueDate)
         todoArray.push(newTodo)
     }
 
 
-    console.table(todoArray)
-    console.log("YLHÄÄLLÄ TODOARRAY")
+   
 
 
 
@@ -104,10 +102,10 @@ const sortTodoByDate = (newTodo, showAll = "no") => {
             return day1 - day2;
         }
     });
-    console.table(dateArray)
+ 
 
     removeClass("todoDiv")
-    console.log("todoArray.length:", todoCache.length, "DateArray.length:", dateArray.length, "Tätä enempää ei pitäisi olla todoDivejä")
+  
     for(var r=0; r<dateArray.length; r++) {
         /// OTTAA TOISELLAKIN DATEARRAYN INDEKSILLÄ SEN ENSIMMÄISEN TODON. SEN MAHDOLLISUUS PITÄISI POISTAA LUUPISTA KUN TODO ON "VIETY"
         for(var p=0; p<todoCache.length; p++) {
