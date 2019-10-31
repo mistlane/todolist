@@ -61,7 +61,7 @@ const configureTodo = (title="", description="", dueDate="", priority="", firstT
 
 const dateArray = []
 const todoArray = []
-const sortTodoByDate = (newTodo) => {
+const sortTodoByDate = (newTodo, showAll = "no") => {
     
 
 
@@ -111,11 +111,23 @@ const sortTodoByDate = (newTodo) => {
     for(var r=0; r<dateArray.length; r++) {
         /// OTTAA TOISELLAKIN DATEARRAYN INDEKSILLÄ SEN ENSIMMÄISEN TODON. SEN MAHDOLLISUUS PITÄISI POISTAA LUUPISTA KUN TODO ON "VIETY"
         for(var p=0; p<todoCache.length; p++) {
-            if(dateArray[r] === todoCache[p].dueDate && todoCache[p].projectName === currentProjectCache.name) {
-                todoDom(todoCache[p])
-                todoCache.splice(p,1)
-                
-                break
+
+            if(showAll === "no") {
+                if(dateArray[r] === todoCache[p].dueDate && todoCache[p].projectName === currentProjectCache.name) {
+                    todoDom(todoCache[p])
+                    todoCache.splice(p,1)
+                    
+                    break
+                }
+            }
+
+            else {
+                if(dateArray[r] === todoCache[p].dueDate) {
+                    todoDom(todoCache[p])
+                    todoCache.splice(p,1)
+                    
+                    break
+                }
             }
 
         }

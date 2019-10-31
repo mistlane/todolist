@@ -1,7 +1,7 @@
 import {todoComplete} from './todocomplete.js';
 import {changeTodoPriority} from './todopriority.js';
 import {formAppear, uploadform, uploadProjectForm} from './form.js';
-import {newProjectBtn, changeProject, currentProjectCache} from './project.js';
+import {newProjectBtn, showAllTodosBtn, changeProject, currentProjectCache} from './project.js';
 import {projectlist} from './factory.js'
 import {clearTodosBtn} from './localstorage.js';
 
@@ -136,6 +136,12 @@ const projectDiv = () => {
     newProjectButton.setAttribute("value", "New Project")
     newProjectButton.setAttribute("id", "newProjectBtn")
 
+    /// SHOW ALL TODOS BUTTON
+    const  showAllTodosButton = document.createElement("input")
+    showAllTodosButton.setAttribute("type", "button")
+    showAllTodosButton.setAttribute("value", "Show All Todos")
+    showAllTodosButton.setAttribute("id", "showAllTodosBtn")
+
     /// CLEAR ALL TODOS 
     const clearTodosButton = document.createElement("input")
     clearTodosButton.setAttribute("type", "button")
@@ -153,12 +159,14 @@ const projectDiv = () => {
     /// APPENDING
    
     projectDiv.appendChild(currentProject)
+    projectDiv.appendChild(showAllTodosButton)
     projectDiv.appendChild(newProjectButton)
     projectDiv.appendChild(clearTodosButton)
     container.appendChild(projectDiv)
 
 
     newProjectBtn()
+    showAllTodosBtn()
     clearTodosBtn()
 }
 

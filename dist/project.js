@@ -11,6 +11,12 @@ const newProjectBtn = function() {
 
 }
 
+const showAllTodosBtn = function() {
+    const button = document.getElementById("showAllTodosBtn")
+    button.addEventListener("click", function() {showAllTodos()})
+
+}
+
 
 
 const configureProject = (titlevalue) => {
@@ -61,6 +67,18 @@ const changeProject = (title) => {
     
 }
 
+const showAllTodos = () => {
+    removeClass("todoDiv")
+    for(var u=0; u<todoArray.length; u++ ) {
+        console.table(todoArray)
+        console.log("SHOWALL TODOS -- TÄSSÄ TÄÄ VITTUSAATANA")
+        sortTodoByDate(todoArray[u], "yes")
+
+    }
+
+
+}
+
 
 const currentProjectCache = {
     
@@ -75,6 +93,7 @@ const currentProjectCache = {
 
 export {
     newProjectBtn,
+    showAllTodosBtn,
     configureProject,
     changeProject,
     currentProjectCache
