@@ -1,6 +1,7 @@
 import {projectOptionGenerator} from './dom.js';
 import {createTodo, sortTodoByDate} from './factory.js';
 import {projectlist} from './factory.js';
+import {removeClass} from './form.js';
 
 
 
@@ -13,6 +14,8 @@ const clearTodosBtn = function() {
 
 const clearTodos = () => {
     localStorage.clear();
+    removeClass("todoDiv")
+    
 }
 
 const localStorageFunction = () => {
@@ -70,19 +73,21 @@ function setTodos() {
     while ( i-- ) {
         archive[ keys[i] ] = JSON.parse(localStorage.getItem( keys[i] ));
 
-        const title = archive[keys[i]].title
-        const description = archive[keys[i]].description
-        const dueDate = archive[keys[i]].dueDate
-        const priority = archive[keys[i]].priority
-        const projectName = archive[keys[i]].projectName
+        if(archive[keys[i]].id !== "project") {
+            const title = archive[keys[i]].title
+            const description = archive[keys[i]].description
+            const dueDate = archive[keys[i]].dueDate
+            const priority = archive[keys[i]].priority
+            const projectName = archive[keys[i]].projectName
 
-        const localTodo = createTodo({title, description, dueDate, priority, projectName})
-        console.table(localTodo)
+            const localTodo = createTodo({title, description, dueDate, priority, projectName})
+            console.table(localTodo)
 
 
 
-        sortTodoByDate(localTodo)
+            sortTodoByDate(localTodo)
         }
+    }
 
 
 }
