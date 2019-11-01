@@ -2,10 +2,16 @@ import {todoComplete} from './todocomplete.js';
 import {changeTodoPriority} from './todopriority.js';
 import {formAppear, uploadform, uploadProjectForm} from './form.js';
 import {newProjectBtn, showAllTodosBtn, changeProject, currentProjectCache} from './project.js';
-import {projectlist} from './factory.js'
+import {projectlist, newTodoBtn} from './factory.js'
 import {clearTodosBtn} from './localstorage.js';
 
-const container = document.getElementById("container")
+
+
+
+
+
+
+
 
 const formatTitle = (title) => {
     const titleSpace = String(title)
@@ -14,8 +20,7 @@ const formatTitle = (title) => {
     return titleNoSpace
 }
 
-const todoContainer = document.createElement("div")
-todoContainer.setAttribute("id","todoContainer")
+const todoContainer = document.getElementById("mainsection")
 const todoDom = (factory) => {
 
 
@@ -63,6 +68,7 @@ const todoDom = (factory) => {
     const completebutton = document.createElement("input")
     completebutton.setAttribute("type", "button")
     completebutton.setAttribute("id", "completebutton" + titleNoSpace)
+    completebutton.setAttribute("class", "completeButton")
     completebutton.value = "It's Finished!"
     completebutton.onclick = function() {todoComplete(titleNoSpace, factory.title)}
     todoDiv.appendChild(completebutton)
@@ -74,6 +80,7 @@ const todoDom = (factory) => {
     const form = document.createElement("form")
     const select = document.createElement("select")
     select.setAttribute("name", "priority")
+    select.setAttribute("class", "todoSelect")
     select.onchange = function() {changeTodoPriority(factory.title, this.value)}
 
     const option0 = document.createElement("option")
@@ -106,7 +113,7 @@ const todoDom = (factory) => {
     todoDiv.appendChild(priorityDiv)
     todoDiv.appendChild(dueDate)
     todoContainer.appendChild(todoDiv)
-    container.appendChild(todoContainer)
+
 
     todoDiv.appendChild(form)
     form.appendChild(select)
@@ -115,38 +122,58 @@ const todoDom = (factory) => {
 
 const NiceJobAlert = () => {
 
+
     const alertdiv = document.createElement("div")
     alertdiv.setAttribute("id", "alertdiv")
     const alerttext  =document.createElement("p")
   
 
     alertdiv.appendChild(alerttext)
-    container.appendChild(alertdiv)
+    ///document.getElementById("main").appendChild(alertdiv)
 }
 
 const projectDiv = () => {
 
     /// PROJECTDIV
-    const projectDiv = document.createElement("div")
-    projectDiv.setAttribute("id", "projectDiv")
+    const projectDiv = document.getElementById("projectDiv")
+    
 
     /// NEW PROJECT BUTTON
-    const newProjectButton = document.createElement("input")
-    newProjectButton.setAttribute("type", "button")
-    newProjectButton.setAttribute("value", "New Project")
+    const newProjectButtonLi = document.getElementById("newProjectBtnLi")
+    const newProjectButton = document.createElement("a")
+  
+    newProjectButton.textContent = "New Project"
     newProjectButton.setAttribute("id", "newProjectBtn")
+    newProjectButton.href = "#"
+
 
     /// SHOW ALL TODOS BUTTON
-    const  showAllTodosButton = document.createElement("input")
-    showAllTodosButton.setAttribute("type", "button")
+
+    const showAllTodosButtonLi = document.getElementById("showAllTodosBtnLi")
+    const  showAllTodosButton = document.createElement("a")
     showAllTodosButton.setAttribute("value", "Show All Todos")
+    showAllTodosButton.textContent = "Show All Todos"
     showAllTodosButton.setAttribute("id", "showAllTodosBtn")
+    showAllTodosButton.href = "#"
+
 
     /// CLEAR ALL TODOS 
-    const clearTodosButton = document.createElement("input")
-    clearTodosButton.setAttribute("type", "button")
-    clearTodosButton.setAttribute("value", "Clear All Todos")
+    const clearTodosButtonLi = document.getElementById("clearTodosBtnLi")
+    const clearTodosButton = document.createElement("a")
+    clearTodosButton.textContent ="Clear All Todos"
     clearTodosButton.setAttribute("id", "clearTodosBtn")
+    clearTodosButton.href = "#"
+
+
+    /// NEW TODO BUTTON
+
+    const todoButtonLi = document.getElementById("newTodoBtnLi")
+    const todoButton = document.createElement("a")
+   
+    todoButton.textContent = "New Todo"
+    todoButton.setAttribute("id", "newTodoBtn")
+    todoButton.href =  "#"
+
 
     /// SHOWING THE CURRENT PROJECT
     const currentProject = document.createElement("h1")
@@ -159,20 +186,23 @@ const projectDiv = () => {
     /// APPENDING
    
     projectDiv.appendChild(currentProject)
-    projectDiv.appendChild(showAllTodosButton)
-    projectDiv.appendChild(newProjectButton)
-    projectDiv.appendChild(clearTodosButton)
-    container.appendChild(projectDiv)
+    showAllTodosButtonLi.appendChild(showAllTodosButton)
+    newProjectButtonLi.appendChild(newProjectButton)
+    clearTodosButtonLi.appendChild(clearTodosButton)
+    todoButtonLi.appendChild(todoButton)
+    
 
 
     newProjectBtn()
     showAllTodosBtn()
     clearTodosBtn()
+    newTodoBtn()
 }
 
 const changeProjectDOM = () => {
     const projectDiv = document.getElementById("projectDiv")
     const form = document.createElement("form")
+    form.setAttribute("id", "changeProjectForm")
    
     const select = document.createElement("select")
     select.setAttribute("name", "project")
@@ -208,7 +238,7 @@ const projectOptionGenerator = (j) =>  {
 const initialLayout = () => {
     NiceJobAlert()
     projectDiv()
-    createNewTodo()
+   
     changeProjectDOM()
 }
 
@@ -223,7 +253,7 @@ const form = () => {
 
 
     //TITLE FOR TEXT
-    const texttitle = document.createElement("p")
+    const texttitle = document.createElement("label")
     texttitle.textContent = "Add a task:"
     texttitle.setAttribute("id", "texttitle")
 
@@ -233,6 +263,8 @@ const form = () => {
     text.setAttribute("id", "formtext")
 
     //DESCRIPTION BOX
+    const descriptiontitle = document.createElement("label")
+    descriptiontitle.textContent = "Description:"
     const description = document.createElement("textarea")
     description.setAttribute("id", "formdescription")
     description.setAttribute("rows", "5")
@@ -240,6 +272,8 @@ const form = () => {
 
 
     //PRIORITY
+    const selecttitle = document.createElement("label")
+    selecttitle.textContent = "Priority:"
     const select = document.createElement("select")
     select.setAttribute("name", "priority")
     select.setAttribute("id", "formselect")
@@ -262,7 +296,9 @@ const form = () => {
 
 
     // DUEDATE
-
+    
+    const dueDatetitle = document.createElement("label")
+    dueDatetitle.textContent = "Due Date:"
     const dueDate = document.createElement("input")
     dueDate.setAttribute("type", "date")
     dueDate.setAttribute("id", "formdate")
@@ -280,26 +316,18 @@ const form = () => {
 
     form.appendChild(texttitle)
     form.appendChild(text)
+    form.appendChild(descriptiontitle)
     form.appendChild(description)
+    form.appendChild(selecttitle)
     form.appendChild(select)
+    form.appendChild(dueDatetitle)
     form.appendChild(dueDate)
     form.appendChild(submit)
-    container.appendChild(form)
+    document.getElementById("asideform").appendChild(form)
     document.getElementById('formdate').valueAsDate = new Date();
 
 }
 
-const createNewTodo = () => {
-    const projectDiv = document.getElementById("projectDiv")
-    const todoButton = document.createElement("input")
-    todoButton.setAttribute("type", "button")
-    todoButton.setAttribute("value", "New Todo")
-    todoButton.setAttribute("id", "todoButton")
-    todoButton.onclick = function() {formAppear()}
-
-    projectDiv.appendChild(todoButton)
-
-}
 
 
 const projectForm = () => {
@@ -333,7 +361,7 @@ const projectForm = () => {
     form.appendChild(texttitle)
     form.appendChild(text)
     form.appendChild(submit)
-    container.appendChild(form)
+    document.getElementById("asideform").appendChild(form)
 
 
 

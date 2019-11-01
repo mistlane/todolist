@@ -1,7 +1,7 @@
 import {todoDom} from '../dist/dom.js';
 import {currentProjectCache} from './project.js';
 import compareAsc from 'date-fns/compareAsc'
-import {removeClass} from './form.js';
+import {removeClass, formAppear} from './form.js';
 import parseISO from 'date-fns/parseISO'
 import parse from 'date-fns/parse'
 
@@ -12,6 +12,14 @@ const createTodo = ({ title, description, dueDate, priority, projectName}) => ({
     priority,
     projectName
 });
+
+
+const newTodoBtn = function() {
+    const button = document.getElementById("newTodoBtn")
+    button.addEventListener("click", function() {formAppear()})
+
+}
+
 
 // Esim. createTodo({title = lol, description = lol, dueDate = now, priority = 0});
 
@@ -139,5 +147,6 @@ export {
     configureTodo,
     projectlist,
     sortTodoByDate,
-    todoArray
+    todoArray,
+    newTodoBtn
 }
