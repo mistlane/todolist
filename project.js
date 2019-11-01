@@ -41,24 +41,25 @@ const configureProject = (titlevalue) => {
 }
 
 const changeProject = (title) => {
-    currentProjectCache.name = title
-
-    /// title = this.value from select
-    removeClass("todoDiv")
-
-    const projectTitle = document.getElementById("currentProject")
-    
-
     if(title !== "Project") {
-        projectTitle.textContent = title
+        currentProjectCache.name = title
+
+        /// title = this.value from select
+        removeClass("todoDiv")
+
+        const projectTitle = document.getElementById("currentProject")
+        
+
+        
+            projectTitle.textContent = title
 
 
-        for(var u=0; u<todoArray.length; u++ ) {
-         
-            if(todoArray[u].projectName == title) {
-                sortTodoByDate(todoArray[u])
+            for(var u=0; u<todoArray.length; u++ ) {
+            
+                if(todoArray[u].projectName == title) {
+                    sortTodoByDate(todoArray[u])
+                }
             }
-        }
 
 
     }

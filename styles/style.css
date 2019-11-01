@@ -1,34 +1,144 @@
-body {
-    background: grey;
+* {
+    margin:0;
+    padding:0;
+    
 }
 
-#todoContainer {
+body {
+    background-color:#f4f4f4;
+    padding:0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.6em;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    
+    
+}
+
+#form, #projectform, #changeProjectForm, .todoSelect, .completeButton{
+    color: #333;
+}
+
+#form label {
+    display:block;
+}
+
+
+
+
+
+
+#main-header {
     position: relative;
-    display: inline-block;
-    background: rgb(166, 166, 233);
-    width: 80%;
-    height: auto;
-    left: 20%;
+    background: coral;
+    color: #fff;
+
+}
+
+#main-header h1 {
+    margin: 0 auto;
+    padding: 25px;;
+}
+
+
+
+
+#navbar {
+    position: relative;
+    background:#333;
+    color:#fff;
+
+}
+
+
+
+#navbar ul {
+    margin: 0;
+    padding:0;
+    list-style: none;
+
+}
+
+#navbar  li {
+    display: inline;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 0;
+  
+}
+
+
+
+#navbar a {
+    display:inline-block;
+    background: #333;
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    padding-right:15px;
+    margin: 0;
+
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    
+}
+
+#navbar a:hover {
+    background:coral;
    
 }
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+
 
 .todoDiv {
-    background: rgb(24, 219, 233);
-    display: inline-block;
-    height: 10%;
+    background: #333;
+    color: #fff;
 }
 
-#projectform {
-    top: 15%;
-    position: absolute;
-   
+#mainsection {
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+    
+
+
 }
 
 
-#form {
-    position: absolute;
-    top: 17%;
- 
 
-    width: 20%;    
+#projectDiv {
+    overflow: hidden;
+    width: 100%;
 }
+
+
+#asideform {
+    overflow: hidden;
+    width: 100%;
+}
+
+
+#aside {
+    background: #333;
+    color: #fff;
+
+}
+
+
+#main-footer {
+    background: #333;
+    color:#fff;
+    text-align: center;
+    padding: 20px;
+
+}
+
