@@ -1,6 +1,6 @@
-import {projectFormAppear} from './form.js';
+import {projectFormAppear, removeElement} from './form.js';
 import {projectlist, sortTodoByDate, todoArray} from './factory.js';
-import {projectOptionGenerator, todoDom} from './dom.js';
+import {projectOptionGenerator, changeProjectDOM} from './dom.js';
 import {removeClass} from './form.js';
 import {localStorageProjects} from './localstorage.js';
 
@@ -63,6 +63,13 @@ const changeProject = (title) => {
 
 
     }
+
+    const select = document.getElementById("changeProjectForm")
+    select.style.display = "none"
+    const button = document.getElementById("changeProjectButton")
+    button.style.display = "block"
+    
+
     
 }
 
@@ -82,6 +89,16 @@ const currentProjectCache = {
 }
 
 
+const showProjectSelect = () =>  {
+    const select = document.getElementById("changeProjectForm")
+    select.style.display = "block"
+    const button = document.getElementById("changeProjectButton")
+    button.style.display = "none"
+    
+    
+
+}
+
 
 
 
@@ -93,7 +110,8 @@ export {
     showAllTodosBtn,
     configureProject,
     changeProject,
-    currentProjectCache
+    currentProjectCache,
+    showProjectSelect
 }
 
 
