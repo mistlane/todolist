@@ -1,6 +1,7 @@
 import {currentProjectCache} from './project.js';
 import {projectlist} from './factory.js';
 import {itemsArray} from './localstorage.js';
+import {alertdiv} from './dom.js';
 
 
 const todoComplete = (titleNoSpace, title) => {
@@ -11,11 +12,10 @@ const todoComplete = (titleNoSpace, title) => {
     deleteFromArray(title)
     deleteFromLocalStorage(title)
 
-    
-  
-
 
 }
+
+
 
 const deleteFromLocalStorage = (title) => {
   localStorage.removeItem(title)
@@ -49,13 +49,19 @@ const deleteFromArray = (title) => {
 
 
 function showalertdiv() {
-    var form = document.getElementById("alertdiv")
-    var originalContent = form.innerHTML
-    form.innerHTML = "Nice Job!"
-    setTimeout(function() {
-      form.innerHTML = originalContent
-    }, 2000)
+  const alertdiv = document.getElementById("alertdiv")
+  
+  if(alertdiv.style.display == "block") {
+      window.clearTimeout(timeoutID)
+    }
+  alertdiv.style.display = "block";
+
+  const deleteAlert = () => {
+    alertdiv.style.display = "none"
   }
+  const timeoutID = window.setTimeout(deleteAlert, 4*1000);
+}
+
 
 
 

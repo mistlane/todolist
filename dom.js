@@ -120,17 +120,6 @@ const todoDom = (factory) => {
 
 }
 
-const NiceJobAlert = () => {
-
-
-    const alertdiv = document.createElement("div")
-    alertdiv.setAttribute("id", "alertdiv")
-    const alerttext  =document.createElement("p")
-  
-
-    alertdiv.appendChild(alerttext)
-    ///document.getElementById("main").appendChild(alertdiv)
-}
 
 const projectDiv = () => {
 
@@ -236,7 +225,7 @@ const projectOptionGenerator = (j) =>  {
 }
 
 const initialLayout = () => {
-    NiceJobAlert()
+
     projectDiv()
    
     changeProjectDOM()
@@ -253,7 +242,7 @@ const form = () => {
 
 
     //TITLE FOR TEXT
-    const texttitle = document.createElement("label")
+    const texttitle = document.createElement("h2")
     texttitle.textContent = "Add a task:"
     texttitle.setAttribute("id", "texttitle")
 
@@ -339,7 +328,7 @@ const projectForm = () => {
 
 
     //TITLE FOR TEXT
-    const texttitle = document.createElement("p")
+    const texttitle = document.createElement("h2")
     texttitle.textContent = "Add The New Project's Title:"
     texttitle.setAttribute("id", "projecttexttitle")
 
@@ -374,6 +363,7 @@ const projectForm = () => {
 
 
 export {
+  
     form,
     projectForm,
     todoDom,
