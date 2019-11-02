@@ -1,7 +1,7 @@
 import {todoComplete} from './todocomplete.js';
-import {changeTodoPriority} from './todopriority.js';
+import {changeTodoPriority, showSelect} from './todopriority.js';
 import {formAppear, uploadform, uploadProjectForm} from './form.js';
-import {newProjectBtn, showAllTodosBtn, changeProject, currentProjectCache} from './project.js';
+import {newProjectBtn, showAllTodosBtn, changeProject, currentProjectCache, showProjectSelect} from './project.js';
 import {projectlist, newTodoBtn} from './factory.js'
 import {clearTodosBtn} from './localstorage.js';
 
@@ -51,8 +51,10 @@ const todoDom = (factory) => {
     dueDate.setAttribute("id", "dueDate"+titleNoSpace)
     dueDate.textContent = factory.dueDate
 
-    //Priority-info
+    //PriorityDiv ja-info
     const priorityDiv = document.createElement("div")
+    priorityDiv.setAttribute("class", "todoPriorityDiv")
+    priorityDiv.setAttribute("id", "todoPriorityDiv"+titleNoSpace)
 
 
     const prioritytext = document.createElement("h3")
@@ -60,64 +62,100 @@ const todoDom = (factory) => {
     prioritytext.textContent= "Priority:"
     const priority = document.createElement("h3")
     priority.setAttribute("id", "priority" +titleNoSpace)
-    priority.setAttribute("class", "dueDate")
+    priority.setAttribute("class", "prioritynumber")
     priority.textContent = factory.priority
+
+
+    // CHANGE PRIORITY BUTTON
+    const priorityButtonContainer = document.createElement("div")
+    priorityButtonContainer.setAttribute("class", "priorityButtonContainer")
+
+
+    const priorityButton = document.createElement("input")
+    priorityButton.setAttribute("type", "button")
+    priorityButton.setAttribute("id", "prioritybutton"+titleNoSpace)
+    priorityButton.setAttribute("class", "priorityButton")
+    priorityButton.value = "Change Priority"
+    priorityButton.onclick = function() {showSelect(titleNoSpace, factory.title)}
+
+
     
 
     // 'Done'-button:
+    const completebuttonContainer = document.createElement("div")
+    completebuttonContainer.setAttribute("class", "completeButtonContainer")
+
     const completebutton = document.createElement("input")
     completebutton.setAttribute("type", "button")
     completebutton.setAttribute("id", "completebutton" + titleNoSpace)
     completebutton.setAttribute("class", "completeButton")
-    completebutton.value = "It's Finished!"
+    completebutton.value = "Finished!"
     completebutton.onclick = function() {todoComplete(titleNoSpace, factory.title)}
-    todoDiv.appendChild(completebutton)
+
+    
+    
 
 
-    // Priority
+
+    // Appending
+
+    const flexbox1 = document.createElement("div")
+    flexbox1.setAttribute("id", "flexbox1")
+
+    flexbox1.appendChild(title)
+
+    completebuttonContainer.appendChild(completebutton)
+    flexbox1.appendChild(completebuttonContainer)
+    todoDiv.appendChild(flexbox1)
+    
+    todoDiv.appendChild(description)
+
+    priorityButtonContainer.appendChild(priorityButton)
+    priorityDiv.appendChild(prioritytext)
+    priorityDiv.appendChild(priority)
+    priorityDiv.appendChild(priorityButtonContainer)
+    
+    todoDiv.appendChild(priorityDiv)
+    todoDiv.appendChild(dueDate)
+    todoContainer.appendChild(todoDiv)
 
 
+    
+
+}
+
+
+const renderTodoSelect = (id, factorytitle) => {
+    const titleNoSpace = formatTitle(factorytitle)
+
+    const priorityDiv = document.getElementById("todoPriorityDiv"+id)
     const form = document.createElement("form")
+    form.setAttribute("class", "changePrioritySelect")
+    form.setAttribute("id", "changePrioritySelect"+factorytitle)
+
     const select = document.createElement("select")
     select.setAttribute("name", "priority")
     select.setAttribute("class", "todoSelect")
-    select.onchange = function() {changeTodoPriority(factory.title, this.value)}
+    select.onchange = function() {changeTodoPriority(factorytitle, this.value, titleNoSpace)}
 
     const option0 = document.createElement("option")
     option0.setAttribute("value", "Priority")
     option0.textContent = "Priority"
     select.appendChild(option0)
 
-    
+
     for(var j=1; j<6; j++) {
         
         const option = document.createElement("option")
         option.setAttribute("value", j)
         option.textContent = j
         select.appendChild(option)
-    
+
     }
 
-
-
-
- 
-
-
-    // Appending
-    todoDiv.appendChild(title)
-    todoDiv.appendChild(description)
-
-    priorityDiv.appendChild(prioritytext)
-    priorityDiv.appendChild(priority)
-    todoDiv.appendChild(priorityDiv)
-    todoDiv.appendChild(dueDate)
-    todoContainer.appendChild(todoDiv)
-
-
-    todoDiv.appendChild(form)
     form.appendChild(select)
-
+    priorityDiv.appendChild(form)
+    
 }
 
 
@@ -169,12 +207,32 @@ const projectDiv = () => {
     currentProject.setAttribute("id", "currentProject")
     currentProject.textContent = "First Project"
     currentProjectCache.name = "First Project"
+
+
+    // CHANGE PROJECT BUTTON
+
+    const changeProjectContainer = document.createElement("div")
+    changeProjectContainer.setAttribute("id", "changeProjectContainer")
+
+    const changeProjectButton = document.createElement("input")
+    changeProjectButton.setAttribute("type", "button")
+    changeProjectButton.setAttribute("id", "changeProjectButton")
+    changeProjectButton.value = "Choose Project"
+    changeProjectButton.onclick = function() {showProjectSelect()}
+
+
+
    
 
 
     /// APPENDING
+
+    changeProjectContainer.appendChild(changeProjectButton)
+
    
     projectDiv.appendChild(currentProject)
+    projectDiv.appendChild(changeProjectContainer)
+
     showAllTodosButtonLi.appendChild(showAllTodosButton)
     newProjectButtonLi.appendChild(newProjectButton)
     clearTodosButtonLi.appendChild(clearTodosButton)
@@ -189,7 +247,8 @@ const projectDiv = () => {
 }
 
 const changeProjectDOM = () => {
-    const projectDiv = document.getElementById("projectDiv")
+
+    const changeProjectContainer = document.getElementById("changeProjectContainer")
     const form = document.createElement("form")
     form.setAttribute("id", "changeProjectForm")
    
@@ -208,9 +267,12 @@ const changeProjectDOM = () => {
 
 
     form.appendChild(select)
-    projectDiv.appendChild(form)
+    changeProjectContainer.appendChild(form)
+    
+    form.style.display="none"
 
     projectOptionGenerator(projectlist[0].title)
+   
 
 
 }
@@ -225,10 +287,9 @@ const projectOptionGenerator = (j) =>  {
 }
 
 const initialLayout = () => {
-
     projectDiv()
-   
     changeProjectDOM()
+
 }
 
 
@@ -268,10 +329,10 @@ const form = () => {
     select.setAttribute("id", "formselect")
 
 
-    const option0 = document.createElement("option")
-    option0.setAttribute("value", "Priority")
-    option0.textContent = "Priority"
-    select.appendChild(option0)
+    //const option0 = document.createElement("option")
+    //option0.setAttribute("value", "Priority")
+    //option0.textContent = "Priority"
+    //select.appendChild(option0)
 
     // OPTION SELECT -MAKERGENERATOR
     for(var j=1; j<6; j++) {
@@ -365,9 +426,11 @@ const projectForm = () => {
 export {
   
     form,
+    changeProjectDOM,
     projectForm,
     todoDom,
     initialLayout,
     formatTitle,
-    projectOptionGenerator
+    projectOptionGenerator,
+    renderTodoSelect
 }

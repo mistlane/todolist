@@ -95,5 +95,6 @@ export {
     uploadform,
     projectFormAppear,
     uploadProjectForm,
-    removeClass
+    removeClass,
+    removeElement
 }
