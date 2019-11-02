@@ -4,6 +4,14 @@
     
 }
 
+html {
+    height: 100%;
+}
+
+.todoDiv {
+    color:#fff;
+}
+
 body {
     background-color:#f4f4f4;
     padding:0;
@@ -13,16 +21,26 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
 
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+
     
     
 }
 
 #form, #projectform, #changeProjectForm, .todoSelect, .completeButton{
     color: #333;
+    padding-bottom: 30px;
 }
 
-#form label {
+#form label, h2 {
     display:block;
+    color: #fff;
+}
+
+#projecttexttitle {
+    color: #fff;
 }
 
 
@@ -92,26 +110,19 @@ body {
    
 }
 
-.container {
-    width: 80%;
-    margin: auto;
-}
+
 
 
 
 .todoDiv {
     background: #333;
     color: #fff;
-}
-
-#mainsection {
-    position: relative;
-    box-sizing: border-box;
-    overflow: hidden;
+    width: 400px;
+    margin: 20px;
     
 
-
 }
+
 
 
 
@@ -127,18 +138,73 @@ body {
 }
 
 
+#main {
+    display:flex;
+    flex-direction: row;
+    height: 100%;
+    position:relative;
+    overflow:hidden;
+    flex: 10;
+
+}
+
 #aside {
     background: #333;
     color: #fff;
+    display: flex;
+    height: 100%;
+    
+    
+    flex-direction: column;
+    margin: 0;
+    height: 100%;
+    align-items: stretch;
+
+
+}
+
+#mainsection {
+    position:relative;
+
+    box-sizing: border-box;
+    overflow: hidden;
+    display:flex;
+  
+
+    flex-direction: row;
+
+    margin: 0;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    flex-wrap:wrap;
+
+    align-content: flex-start;
+
+
+    margin-right: 5%;
+    margin-left: 5%;
 
 }
 
 
+
+#flexcontainer {
+    align-items: stretch;
+}
 #main-footer {
     background: #333;
     color:#fff;
     text-align: center;
     padding: 20px;
 
+ 
+
 }
+
+.alert-success{
+    display:none;
+    margin-bottom: 0;
+  }
+
+
 

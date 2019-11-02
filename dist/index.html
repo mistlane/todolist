@@ -25,6 +25,7 @@
       </header>
 
     
+    
       <nav id="navbar">
           <ul>
             <li id = "showAllTodosBtnLi"></li>
@@ -34,14 +35,22 @@
           </ul>
       </nav>
 
+      <div id = "alertdiv" class="alert alert-success" role="alert">
+        Great Job!
+      </div>
+
       
       <main id="main">
+        
+        <div id="flexcontainer">
+          <aside id="aside">
+            <div class="container" id="projectDiv"></div>
+            <div class="container" id="asideform"></div>
+          </aside>
+        </div>
+
         <section id="mainsection"></section>
 
-        <aside id="aside">
-          <div class="container" id="projectDiv"></div>
-          <div class="container" id="asideform"></div>
-        </aside>
       </main>
 
      
@@ -52,7 +61,7 @@
 
 
 
-
+      
     <footer id="main-footer">Copyright &copy; mistlane 2019</footer>
   
     <script src="main.js"></script>
